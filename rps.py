@@ -1,10 +1,14 @@
 import random
 
-# function to randomly choose between rock paper and scissors
-def choose_rps():
-    # output: randomly returns rock, paper, or scissors
-    options = ["rock", "paper", "scissors"]
-    return options[random.randint(0,2)]
+# function to ensure that players' input is either rock, paper, or scissors
+# NEED TO FIX: should continue to prompt input UNTIL rp or s is chosen
+# POTENTIAL SOULTION: move input() to be inside the choose_rps function
+def choose_rps(choice):
+    choice = choice.lower()
+    if choice != "rock" or choice != "paper" or choice != "scissors":
+        print("Please choose between: rock, paper, scissors")
+    else:
+        return choice
 
 # output: prints the winner of the game
 def rps(player1, player2):
@@ -34,7 +38,10 @@ while play == "yes":
 
     # ask player1 and player2 to input their rps choice
     player1_choice = input("Player 1: do you choose rock, paper, or scissors?")
+    choose_rps(player1_choice)
+   
     player2_choice = input("Player 2: do you choose rock, paper, or scissors?")
+    choose_rps(player2_choice)
     print("-----")
 
     # print player1 and player2's choice
