@@ -1,59 +1,63 @@
 import random
 
-# function to ensure that players' input is either rock, paper, or scissors
-# NEED TO FIX: should continue to prompt input UNTIL rp or s is chosen
-# POTENTIAL SOULTION: move input() to be inside the choose_rps function
-def choose_rps(choice):
-    choice = choice.lower()
-    if choice != "rock" or choice != "paper" or choice != "scissors":
-        print("Please choose between: rock, paper, scissors")
-    else:
-        return choice
+# function prompting player to choose between rock paper or scissors
+def player_rps():
+    while True:    
+        print("Do you choose rock, paper, or scissors?")
+        player_choice = input()
+        player_choice = player_choice.lower()
+        if player_choice != "rock" and player_choice != "paper" and player_choice != "scissors":
+            print("Please choose between: rock, paper, scissors")     
+        else:
+            return player_choice 
 
+# function randomly selecting a choice for the computer
+def computer_rps():
+    options = ["rock", "paper", "scissors"]
+    computer_choice = options[random.randint(0, 2)]
+    return computer_choice
+    
 # output: prints the winner of the game
-def rps(player1, player2):
-    if player1 == player2:
+def rps(player, computer):
+    if player == computer:
         print("It's a tie!")
-    elif player1 == "rock":
-        if player2 == "scissors":
-            print("Player 1 won!")
+    elif player == "rock":
+        if computer == "scissors":
+            print("You won! Congrats!")
         else:
-            print("Player 2 won!")
-    elif player1 == "paper":
-        if player2 == "rock":
-            print("Player 1 won!")
+            print("The computer won :(")
+    elif player == "paper":
+        if computer == "rock":
+            print("You won! Congrats!")
         else:
-            print("Player 2 won!")
-    elif player1 == "scissors":
-        if player2 == "paper":
-            print("Player 1 won!")
+            print("The computer won :(")
+    elif player == "scissors":
+        if computer == "paper":
+            print("You won! Congrats!")
         else:
-            print("Player 2 won!")
+            print("The computer won :(")
 
 play = "yes"
 while play == "yes":
     # game greeting
     print("Welcome to Rock, Paper, Scissors!")
-    print("-----")
 
-    # ask player1 and player2 to input their rps choice
-    player1_choice = input("Player 1: do you choose rock, paper, or scissors?")
-    choose_rps(player1_choice)
+    # ask player to input their rps choice
+    player = player_rps()
    
-    player2_choice = input("Player 2: do you choose rock, paper, or scissors?")
-    choose_rps(player2_choice)
+    # computer randomly chooses
+    computer = computer_rps()
     print("-----")
 
-    # print player1 and player2's choice
-    print("Player 1 chose " + player1_choice)
-    print("Player 2 chose " + player2_choice)
+    # print the results of the game
+    print("You chose: " + player.upper())
+    print("The computer chose: " + computer.upper())
     print("-----")
-
-    # print the winner of the game
-    rps(player1_choice, player2_choice)
+    rps(player, computer)
 
     # ask user if they'd like to play again
     play = input("Would you like to play again? (yes or no)")
-    
+    print("-----")
+
 print("Thank you for playing!")
     
